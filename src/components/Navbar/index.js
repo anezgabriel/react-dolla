@@ -13,13 +13,13 @@ import { FaBars } from 'react-icons/fa';
 
 const links = ['about', 'discover', 'services', 'register'];
 
-const Navbar = () => {
+const Navbar = (props) => {
   return (
     <>
       <Nav>
         <NavbarContainer>
           <NavLogo to="/">dolla</NavLogo>
-          <MobileIcon>
+          <MobileIcon onClick={props.toggle}>
             <FaBars />
           </MobileIcon>
           <NavMenu>
