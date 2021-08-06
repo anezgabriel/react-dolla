@@ -40,6 +40,11 @@ const Hero = () => {
         </HeroP>
         <HeroBtnWrapper>
           <Button
+            smooth={true}
+            duration={500}
+            spy={true}
+            exact="true"
+            offset={-80}
             onMouseEnter={onHover}
             onMouseLeave={onHover}
             to="register"
