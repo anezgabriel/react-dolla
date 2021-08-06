@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import {
   MobileIcon,
   Nav,
@@ -10,13 +11,33 @@ import {
   NavMenu
 } from './NavbarElements';
 import { FaBars } from 'react-icons/fa';
+import { IconContext } from 'react-icons/lib';
 
 const links = ['about', 'discover', 'services', 'register'];
+const iconStyles = { color: '#fff' };
 
 const Navbar = (props) => {
+  const [scrollNav, setScrollNav] = useState(false);
+
+  const handleScroll = () => {
+    if (window.scrollY > 80) {
+      setScrollNav(true);
+    } else {
+      setScrollNav(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   return (
-    <>
-      <Nav>
+    <IconContext.Provider value={iconStyles}>
+      <Nav scrollNav={scrollNav}>
         <NavbarContainer>
           <NavLogo to="/">dolla</NavLogo>
           <MobileIcon onClick={props.toggle}>
@@ -34,7 +55,7 @@ const Navbar = (props) => {
           </NavBtn>
         </NavbarContainer>
       </Nav>
-    </>
+    </IconContext.Provider>
   );
 };
 
