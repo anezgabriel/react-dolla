@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { animateScroll as scroll } from 'react-scroll';
 import {
   MobileIcon,
   Nav,
@@ -35,18 +36,33 @@ const Navbar = (props) => {
     };
   }, []);
 
+  const toggleHome = () => {
+    scroll.scrollToTop();
+  };
+
   return (
     <IconContext.Provider value={iconStyles}>
       <Nav scrollNav={scrollNav}>
         <NavbarContainer>
-          <NavLogo to="/">dolla</NavLogo>
+          <NavLogo to="/" onClick={toggleHome}>
+            dolla
+          </NavLogo>
           <MobileIcon onClick={props.toggle}>
             <FaBars />
           </MobileIcon>
           <NavMenu>
             {links.map((link) => (
               <NavItem key={link}>
-                <NavLinks to={link}>{link}</NavLinks>
+                <NavLinks
+                  smooth={true}
+                  duration={500}
+                  spy={true}
+                  exact="true"
+                  offset={-80}
+                  activeClass="active"
+                  to={link}>
+                  {link}
+                </NavLinks>
               </NavItem>
             ))}
           </NavMenu>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { animateScroll as scroll } from 'react-scroll';
 import {
   Copyright,
   CopyrightWrap,
@@ -39,6 +40,10 @@ const fakeLinks = [
 ];
 
 const Footer = () => {
+  const toggleHome = () => {
+    scroll.scrollToTop();
+  };
+
   return (
     <FooterContainer>
       <FooterWrap>
@@ -58,7 +63,9 @@ const Footer = () => {
         </FooterLinksContainer>
         <Copyright>
           <CopyrightWrap>
-            <WebsiteLogo to="/">dolla</WebsiteLogo>
+            <WebsiteLogo to="/" onClick={toggleHome}>
+              dolla
+            </WebsiteLogo>
             <WebsiteRights>
               dolla © {new Date().getFullYear()} All rights reserved.
             </WebsiteRights>
